@@ -6,6 +6,8 @@ struct BinaryStream : ReadOnlyBinaryStream {
 	char filler[8];
 	std::string unk11;
 
+	BinaryStream();
+
 	void write(void const *, unsigned long);
 
 	void writeUnsignedShort(unsigned short);
@@ -16,4 +18,4 @@ struct BinaryStream : ReadOnlyBinaryStream {
 	void writeType(T const &);
 };
 
-extern "C" void *_ZN12BinaryStreamC2Ev(BinaryStream *);
+static_assert(sizeof(BinaryStream) == 96);

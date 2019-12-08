@@ -16,8 +16,7 @@ extern "C" void modloader_on_server_start(ServerInstance *serverInstance) {
 
 	std::ifstream input("required_block_states.json");
 
-	auto stream = (BinaryStream *) malloc(sizeof(size_t));
-	_ZN12BinaryStreamC2Ev(stream);
+	auto stream = new BinaryStream();
 
 	auto json = nlohmann::json::object();
 	input >> json;

@@ -8,3 +8,6 @@ struct ReadOnlyBinaryStream {
 	std::string unk2;
 	std::string *buffer;
 };
+
+static_assert(offsetof(ReadOnlyBinaryStream, buffer) == 48);
+static_assert(sizeof(ReadOnlyBinaryStream) == 56);
