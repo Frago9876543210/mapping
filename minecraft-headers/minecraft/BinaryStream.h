@@ -3,8 +3,8 @@
 #include "ReadOnlyBinaryStream.h"
 
 struct BinaryStream : ReadOnlyBinaryStream {
-	char filler[8];
 	std::string unk11;
+	std::string* unk2;
 
 	BinaryStream();
 
@@ -18,4 +18,4 @@ struct BinaryStream : ReadOnlyBinaryStream {
 	void writeType(T const &);
 };
 
-static_assert(sizeof(BinaryStream) == 96);
+static_assert(sizeof(BinaryStream) == 104);
