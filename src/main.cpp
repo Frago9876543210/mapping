@@ -45,4 +45,5 @@ extern "C" void modloader_on_server_start(ServerInstance *serverInstance) {
 	std::ofstream output("output");
 	output << *stream->buffer;
 	output.close();
+	delete stream;
 }
