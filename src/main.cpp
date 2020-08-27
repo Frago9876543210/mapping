@@ -11,7 +11,7 @@
 #include <json.hpp>
 #include <iostream>
 
-extern "C" void modloader_on_server_start(ServerInstance *serverInstance) {
+void generate_legacy_block_map(ServerInstance *serverInstance) {
 	auto palette = serverInstance->getMinecraft()->getLevel()->getBlockPalette();
 
 	std::ifstream input("required_block_states.json");
@@ -46,4 +46,27 @@ extern "C" void modloader_on_server_start(ServerInstance *serverInstance) {
 	output << *stream->buffer;
 	output.close();
 	delete stream;
+}
+
+void generate_palette(ServerInstance *serverInstance) {
+	auto palette = serverInstance->getMinecraft()->getLevel()->getBlockPalette();
+	unsigned int numStates = palette->getNumBlockRuntimeIds();
+	std::cout << "Number of blockstates: " << numStates << std::endl;
+
+	auto paletteStream = new BinaryStream();
+	for (unsigned int i = 0; i < numStates; i++) {
+		auto state = palette->getBlock(i);
+		paletteStream->writeType(state->tag);
+	}
+
+	std::ofstream paletteOutput("palette.nbt");
+	paletteOutput << *paletteStream->buffer;
+	paletteOutput.close();
+	delete paletteStream;
+	std::cout << "Wrote palette to output file palette.nbt" << std::endl;
+}
+
+extern "C" void modloader_on_server_start(ServerInstance *serverInstance) {
+	generate_legacy_block_map(serverInstance);
+	generate_palette(serverInstance);
 }
