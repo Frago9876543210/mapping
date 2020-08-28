@@ -7,7 +7,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # ModLoader
 
-include_directories(minecraft-headers)
+target_include_directories(mapping PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/minecraft-headers)
 
 find_package(ModLoader REQUIRED)
 
