@@ -7,8 +7,9 @@
 #include <minecraft/Minecraft.h>
 #include <minecraft/ServerInstance.h>
 
+#include <nlohmann/json.hpp>
+
 #include <fstream>
-#include <json.hpp>
 #include <iostream>
 
 void generate_legacy_block_map(ServerInstance *serverInstance) {
