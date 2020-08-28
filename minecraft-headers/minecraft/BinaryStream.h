@@ -8,14 +8,14 @@ struct BinaryStream : ReadOnlyBinaryStream {
 
 	BinaryStream();
 
-	void write(void const *, unsigned long);
+	void write(const void *, unsigned long);
 
 	void writeUnsignedShort(unsigned short);
 
 	void writeUnsignedVarInt(unsigned int);
 
 	template<typename T>
-	void writeType(T const &);
+	void writeType(const T &);
 };
 
 static_assert(sizeof(BinaryStream) == 104);

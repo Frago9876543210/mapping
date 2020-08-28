@@ -5,7 +5,7 @@
 struct BlockLegacy;
 
 struct BlockPalette {
-	BlockLegacy *getBlockLegacy(std::string const &) const;
+	BlockLegacy *getBlockLegacy(const std::string &) const;
 	const Block *getBlock(const unsigned int & blockRuntimeId) const;
 	size_t getNumBlockRuntimeIds() const;
 };
